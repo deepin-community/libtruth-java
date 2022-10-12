@@ -1,0 +1,44 @@
+libtruth-java (0.39-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release
+    - Build the new core module
+    - Ignore the new extension modules
+    - Disabled GWT support
+  * Build with maven-debian-helper instead of javahelper
+  * Standards-Version updated to 4.1.5
+  * Removed the unused build dependency on ant-optional
+  * Changed the package priority from extra to optional
+  * Use salsa.debian.org Vcs-* URLs
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Tue, 24 Jul 2018 04:04:18 +0200
+
+libtruth-java (0.7.0-3) unstable; urgency=medium
+
+  * Team upload.
+  * Fixed the build failure with Java 9 (Closes: #893294)
+  * Standards-Version updated to 4.1.3
+  * Switch to debhelper level 11
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Sat, 17 Mar 2018 23:48:24 +0100
+
+libtruth-java (0.7.0-2) unstable; urgency=medium
+
+  [ Emmanuel Bourg ]
+  * Team upload.
+  * Moved the package to Git
+
+  [ tony mancill ]
+  * Transition package to Java Team maintenance.
+  * Bump Standards-Version to 3.9.8.
+  * Update Vcs URLs to use https.
+  * Build-depend upon default-jdk. (Closes: #761544)
+  * Add watch file
+
+ -- tony mancill <tmancill@debian.org>  Mon, 26 Sep 2016 21:19:43 -0700
+
+libtruth-java (0.7.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #686121)
+
+ -- Brian Thomason <brian.thomason@eucalyptus.com>  Tue, 28 Aug 2012 16:52:51 +0000

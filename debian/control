@@ -1,0 +1,23 @@
+Source: libtruth-java
+Section: java
+Priority: optional
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders: tony mancill <tmancill@debian.org>
+Build-Depends:
+ debhelper (>= 11),
+ default-jdk (>= 2:1.7),
+ junit4,
+ maven-debian-helper
+Standards-Version: 4.1.5
+Vcs-Git: https://salsa.debian.org/java-team/libtruth-java.git
+Vcs-Browser: https://salsa.debian.org/java-team/libtruth-java
+Homepage: https://github.com/truth0/truth
+
+Package: libtruth-java
+Architecture: all
+Depends: ${misc:Depends}, ${maven:Depends}
+Suggests: ${maven:OptionalDepends}
+Description: assertion/proposition framework for Java unit tests
+ This package provides a assertion/proposition framework for Java unit tests.
+ It is considered alpha software but is currently needed and used by the Guava
+ GWT bindings.

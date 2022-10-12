@@ -1,0 +1,11 @@
+
+com.google.auto.value auto-value
+com.google.errorprone error_prone_annotations
+com.google.guava guava-gwt
+com.google.guava guava-testlib
+com.google.gwt gwt-user
+com.google.testing.compile compile-testing
+org.apache.maven.plugins maven-javadoc-plugin
+org.apache.maven.plugins maven-source-plugin
+org.codehaus.mojo animal-sniffer-maven-plugin
+org.codehaus.mojo gwt-maven-plugin

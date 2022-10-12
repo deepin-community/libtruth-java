@@ -1,0 +1,373 @@
+Description: Ignore the errorprone annotations
+Author: Emmanuel Bourg <ebourg@apache.org>
+Forwarded: not-needed
+--- a/core/src/main/java/com/google/common/truth/IterableSubject.java
++++ b/core/src/main/java/com/google/common/truth/IterableSubject.java
+@@ -46,7 +46,6 @@
+ import com.google.common.collect.Multiset.Entry;
+ import com.google.common.collect.Ordering;
+ import com.google.common.collect.Sets;
+-import com.google.errorprone.annotations.CanIgnoreReturnValue;
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.Comparator;
+@@ -217,7 +216,6 @@
+    * on the object returned by this method. The expected elements must appear in the given order
+    * within the actual elements, but they are not required to be consecutive.
+    */
+-  @CanIgnoreReturnValue
+   public final Ordered containsAllOf(
+       @Nullable Object firstExpected,
+       @Nullable Object secondExpected,
+@@ -235,7 +233,6 @@
+    * on the object returned by this method. The expected elements must appear in the given order
+    * within the actual elements, but they are not required to be consecutive.
+    */
+-  @CanIgnoreReturnValue
+   public final Ordered containsAllIn(Iterable<?> expected) {
+     return containsAll("contains all elements in", expected);
+   }
+@@ -249,7 +246,6 @@
+    * on the object returned by this method. The expected elements must appear in the given order
+    * within the actual elements, but they are not required to be consecutive.
+    */
+-  @CanIgnoreReturnValue
+   public final Ordered containsAllIn(Object[] expected) {
+     return containsAllIn(asList(expected));
+   }
+@@ -324,7 +320,6 @@
+    * #containsExactlyElementsIn(Object[])}. It makes clear that the given array is a list of
+    * elements, not an element itself. This helps human readers and avoids a compiler warning.
+    */
+-  @CanIgnoreReturnValue
+   public final Ordered containsExactly(@Nullable Object... varargs) {
+     List<Object> expected = (varargs == null) ? Lists.newArrayList((Object) null) : asList(varargs);
+     return containsExactlyElementsIn(
+@@ -341,7 +336,6 @@
+    * <p>To also test that the contents appear in the given order, make a call to {@code inOrder()}
+    * on the object returned by this method.
+    */
+-  @CanIgnoreReturnValue
+   public final Ordered containsExactlyElementsIn(Iterable<?> expected) {
+     return containsExactlyElementsIn(expected, false);
+   }
+@@ -355,7 +349,6 @@
+    * <p>To also test that the contents appear in the given order, make a call to {@code inOrder()}
+    * on the object returned by this method.
+    */
+-  @CanIgnoreReturnValue
+   public final Ordered containsExactlyElementsIn(Object[] expected) {
+     return containsExactlyElementsIn(asList(expected));
+   }
+@@ -751,7 +744,6 @@
+      * of elements, not an element itself. This helps human readers and avoids a compiler warning.
+      */
+     @SafeVarargs
+-    @CanIgnoreReturnValue
+     public final Ordered containsExactly(@Nullable E... expected) {
+       return containsExactlyElementsIn(
+           (expected == null) ? Lists.newArrayList((E) null) : asList(expected));
+@@ -765,7 +757,6 @@
+      * <p>To also test that the contents appear in the given order, make a call to {@code inOrder()}
+      * on the object returned by this method.
+      */
+-    @CanIgnoreReturnValue
+     public Ordered containsExactlyElementsIn(Iterable<? extends E> expected) {
+       List<A> actualList = iterableToList(getCastActual());
+       List<? extends E> expectedList = iterableToList(expected);
+@@ -816,7 +807,6 @@
+      * <p>To also test that the contents appear in the given order, make a call to {@code inOrder()}
+      * on the object returned by this method.
+      */
+-    @CanIgnoreReturnValue
+     public Ordered containsExactlyElementsIn(E[] expected) {
+       return containsExactlyElementsIn(asList(expected));
+     }
+@@ -995,7 +985,6 @@
+      * subject, but they are not required to be consecutive.
+      */
+     @SafeVarargs
+-    @CanIgnoreReturnValue
+     public final Ordered containsAllOf(@Nullable E first, @Nullable E second, @Nullable E... rest) {
+       return containsAllIn(accumulate(first, second, rest));
+     }
+@@ -1009,7 +998,6 @@
+      * on the object returned by this method. The elements must appear in the given order within the
+      * subject, but they are not required to be consecutive.
+      */
+-    @CanIgnoreReturnValue
+     public Ordered containsAllIn(Iterable<? extends E> expected) {
+       List<A> actualList = iterableToList(getCastActual());
+       List<? extends E> expectedList = iterableToList(expected);
+@@ -1050,7 +1038,6 @@
+      * on the object returned by this method. The elements must appear in the given order within the
+      * subject, but they are not required to be consecutive.
+      */
+-    @CanIgnoreReturnValue
+     public Ordered containsAllIn(E[] expected) {
+       return containsAllIn(asList(expected));
+     }
+--- a/core/src/main/java/com/google/common/truth/MapSubject.java
++++ b/core/src/main/java/com/google/common/truth/MapSubject.java
+@@ -30,7 +30,6 @@
+ import com.google.common.collect.Maps;
+ import com.google.common.collect.Multiset;
+ import com.google.common.collect.Sets;
+-import com.google.errorprone.annotations.CanIgnoreReturnValue;
+ import java.util.LinkedHashMap;
+ import java.util.LinkedHashSet;
+ import java.util.List;
+@@ -169,7 +168,6 @@
+   }
+ 
+   /** Fails if the map is not empty. */
+-  @CanIgnoreReturnValue
+   public Ordered containsExactly() {
+     return containsExactlyEntriesIn(ImmutableMap.of());
+   }
+@@ -182,7 +180,6 @@
+    *
+    * <p>The arguments must not contain duplicate keys.
+    */
+-  @CanIgnoreReturnValue
+   public Ordered containsExactly(@Nullable Object k0, @Nullable Object v0, Object... rest) {
+     return containsExactlyEntriesIn(accumulateMap(k0, v0, rest));
+   }
+@@ -212,7 +209,6 @@
+   }
+ 
+   /** Fails if the map does not contain exactly the given set of entries in the given map. */
+-  @CanIgnoreReturnValue
+   public Ordered containsExactlyEntriesIn(Map<?, ?> expectedMap) {
+     if (expectedMap.isEmpty()) {
+       if (actual().isEmpty()) {
+@@ -230,7 +226,6 @@
+     }
+   }
+ 
+-  @CanIgnoreReturnValue
+   private boolean containsExactlyEntriesInAnyOrder(Map<?, ?> expectedMap, String failVerb) {
+     MapDifference<?, ?, ?> diff = MapDifference.create(actual(), expectedMap, EQUALITY);
+     if (diff.isEmpty()) {
+@@ -536,7 +531,6 @@
+      */
+     // TODO(b/25744307): Can we add an error-prone check that rest.length % 2 == 0?
+     // For bonus points, checking that the even-numbered values are of type E would be sweet.
+-    @CanIgnoreReturnValue
+     public Ordered containsExactly(@Nullable Object k0, @Nullable E v0, Object... rest) {
+       @SuppressWarnings("unchecked") // throwing ClassCastException is the correct behaviour
+       Map<Object, E> expectedMap = (Map<Object, E>) accumulateMap(k0, v0, rest);
+@@ -547,7 +541,6 @@
+      * Fails if the map does not contain exactly the keys in the given map, mapping to values that
+      * correspond to the values of the given map.
+      */
+-    @CanIgnoreReturnValue
+     public <K, V extends E> Ordered containsExactlyEntriesIn(Map<K, V> expectedMap) {
+       if (expectedMap.isEmpty()) {
+         if (actual().isEmpty()) {
+--- a/core/src/main/java/com/google/common/truth/MultimapSubject.java
++++ b/core/src/main/java/com/google/common/truth/MultimapSubject.java
+@@ -34,7 +34,6 @@
+ import com.google.common.collect.Multimap;
+ import com.google.common.collect.SetMultimap;
+ import com.google.common.collect.Sets;
+-import com.google.errorprone.annotations.CanIgnoreReturnValue;
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.Collections;
+@@ -202,7 +201,6 @@
+    * the two multimaps iterate fully in the same order. That is, their key sets iterate in the same
+    * order, and the value collections for each key iterate in the same order.
+    */
+-  @CanIgnoreReturnValue
+   public Ordered containsExactlyEntriesIn(Multimap<?, ?> expectedMultimap) {
+     checkNotNull(expectedMultimap, "expectedMultimap");
+     ListMultimap<?, ?> missing = difference(expectedMultimap, actual());
+@@ -249,7 +247,6 @@
+   }
+ 
+   /** Fails if the multimap is not empty. */
+-  @CanIgnoreReturnValue
+   public Ordered containsExactly() {
+     return check().about(iterableEntries()).that(actual().entries()).containsExactly();
+   }
+@@ -260,7 +257,6 @@
+    * <p><b>Warning:</b> the use of varargs means that we cannot guarantee an equal number of
+    * key/value pairs at compile time. Please make sure you provide varargs in key/value pairs!
+    */
+-  @CanIgnoreReturnValue
+   public Ordered containsExactly(@Nullable Object k0, @Nullable Object v0, Object... rest) {
+     return containsExactlyEntriesIn(accumulateMultimap(k0, v0, rest));
+   }
+@@ -283,7 +279,6 @@
+ 
+   /** @deprecated Use {@link #containsExactlyEntriesIn} instead. */
+   @Deprecated
+-  @CanIgnoreReturnValue
+   public Ordered containsExactly(Multimap<?, ?> expectedMultimap) {
+     return containsExactlyEntriesIn(expectedMultimap);
+   }
+@@ -568,7 +563,6 @@
+      * the same order, and the corresponding value collections for each key iterate in the same
+      * order.
+      */
+-    @CanIgnoreReturnValue
+     public <K, V extends E> Ordered containsExactlyEntriesIn(Multimap<K, V> expectedMultimap) {
+       // Note: The non-fuzzy MultimapSubject.containsExactlyEntriesIn has a custom implementation
+       // and produces somewhat better failure messages simply asserting about the iterables of
+@@ -589,7 +583,6 @@
+      * <p><b>Warning:</b> the use of varargs means that we cannot guarantee an equal number of
+      * key/value pairs at compile time. Please make sure you provide varargs in key/value pairs!
+      */
+-    @CanIgnoreReturnValue
+     public <K, V extends E> Ordered containsExactly(
+         @Nullable Object k0, @Nullable Object v0, Object... rest) {
+       @SuppressWarnings("unchecked")
+@@ -598,7 +591,6 @@
+     }
+ 
+     /** Fails if the multimap is not empty. */
+-    @CanIgnoreReturnValue
+     public <K, V extends E> Ordered containsExactly() {
+       return MultimapSubject.this.containsExactly();
+     }
+--- a/core/src/main/java/com/google/common/truth/Subject.java
++++ b/core/src/main/java/com/google/common/truth/Subject.java
+@@ -22,7 +22,6 @@
+ import com.google.common.base.Objects;
+ import com.google.common.base.Predicates;
+ import com.google.common.collect.Iterables;
+-import com.google.errorprone.annotations.CanIgnoreReturnValue;
+ import java.util.Arrays;
+ import java.util.List;
+ import javax.annotation.Nullable;
+@@ -102,7 +101,6 @@
+    * type.
+    */
+   @SuppressWarnings("unchecked")
+-  @CanIgnoreReturnValue
+   public S named(String format, Object... args) {
+     checkNotNull(format, "Name passed to named() cannot be null.");
+     this.customName = StringUtil.format(format, args);
+--- a/core/src/main/java/com/google/common/truth/GraphMatching.java
++++ b/core/src/main/java/com/google/common/truth/GraphMatching.java
+@@ -20,7 +20,6 @@
+ import com.google.common.collect.HashBiMap;
+ import com.google.common.collect.ImmutableBiMap;
+ import com.google.common.collect.Multimap;
+-import com.google.errorprone.annotations.CanIgnoreReturnValue;
+ import java.util.ArrayDeque;
+ import java.util.HashMap;
+ import java.util.Map;
+@@ -213,7 +212,6 @@
+      * @param lhs The LHS vertex from which to start the DFS
+      * @return Whether or not the DFS was successful
+      */
+-    @CanIgnoreReturnValue
+     private boolean depthFirstSearch(
+         BiMap<U, V> matching, Map<U, Integer> layers, int freeRhsVertexLayer, U lhs) {
+       // Note that this differs from the method described in the text of the wikipedia article (at
+--- a/core/src/main/java/com/google/common/truth/PrimitiveDoubleArraySubject.java
++++ b/core/src/main/java/com/google/common/truth/PrimitiveDoubleArraySubject.java
+@@ -26,7 +26,6 @@
+ 
+ import com.google.common.collect.Iterables;
+ import com.google.common.primitives.Doubles;
+-import com.google.errorprone.annotations.CanIgnoreReturnValue;
+ import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.List;
+@@ -484,7 +483,6 @@
+     }
+ 
+     /** As {@link #containsAllOf(Object, Object, Object...)} but taking a primitive double array. */
+-    @CanIgnoreReturnValue
+     public Ordered containsAllOf(double[] expected) {
+       return containsAllIn(Doubles.asList(expected));
+     }
+@@ -495,7 +493,6 @@
+     }
+ 
+     /** As {@link #containsExactly(Object...)} but taking a primitive double array. */
+-    @CanIgnoreReturnValue
+     public Ordered containsExactly(double[] expected) {
+       return containsExactlyElementsIn(Doubles.asList(expected));
+     }
+--- a/core/src/main/java/com/google/common/truth/PrimitiveFloatArraySubject.java
++++ b/core/src/main/java/com/google/common/truth/PrimitiveFloatArraySubject.java
+@@ -25,7 +25,6 @@
+ 
+ import com.google.common.collect.Iterables;
+ import com.google.common.primitives.Floats;
+-import com.google.errorprone.annotations.CanIgnoreReturnValue;
+ import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.List;
+@@ -490,7 +489,6 @@
+     }
+ 
+     /** As {@link #containsAllOf(Object, Object, Object...)} but taking a primitive float array. */
+-    @CanIgnoreReturnValue
+     public Ordered containsAllOf(float[] expected) {
+       return containsAllIn(Floats.asList(expected));
+     }
+@@ -501,7 +499,6 @@
+     }
+ 
+     /** As {@link #containsExactly(Object...)} but taking a primitive float array. */
+-    @CanIgnoreReturnValue
+     public Ordered containsExactly(float[] expected) {
+       return containsExactlyElementsIn(Floats.asList(expected));
+     }
+--- a/core/src/main/java/com/google/common/truth/Expect.java
++++ b/core/src/main/java/com/google/common/truth/Expect.java
+@@ -23,7 +23,6 @@
+ import static com.google.common.truth.Expect.TestPhase.DURING;
+ 
+ import com.google.common.truth.Truth.AssertionErrorWithCause;
+-import com.google.errorprone.annotations.concurrent.GuardedBy;
+ import java.util.ArrayList;
+ import java.util.List;
+ import javax.annotation.Nullable;
+@@ -64,10 +63,8 @@
+ public final class Expect extends StandardSubjectBuilder implements TestRule {
+ 
+   private static final class ExpectationGatherer implements FailureStrategy {
+-    @GuardedBy("this")
+     private final List<AssertionError> failures = new ArrayList<AssertionError>();
+ 
+-    @GuardedBy("this")
+     private TestPhase inRuleContext = BEFORE;
+ 
+     private final boolean showStackTrace;
+@@ -131,7 +128,6 @@
+       return message.toString();
+     }
+ 
+-    @GuardedBy("this")
+     private void doCheckInRuleContext(@Nullable AssertionError failure) {
+       switch (inRuleContext) {
+         case BEFORE:
+@@ -153,14 +149,12 @@
+       throw new AssertionError();
+     }
+ 
+-    @GuardedBy("this")
+     private void doLeaveRuleContext() {
+       if (hasFailures()) {
+         throw new AssertionError(this);
+       }
+     }
+ 
+-    @GuardedBy("this")
+     private void doLeaveRuleContext(Throwable caught) throws Throwable {
+       if (hasFailures()) {
+         String message =
+@@ -174,7 +168,6 @@
+       }
+     }
+ 
+-    @GuardedBy("this")
+     private void record(AssertionError failure) {
+       doCheckInRuleContext(failure);
+       failures.add(failure);
